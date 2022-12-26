@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: trade1
+-- ------------------------------------------------------
+-- Server version	8.0.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `order`
+--
+
+DROP TABLE IF EXISTS `order`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `order` (
+  `OrderID` int NOT NULL AUTO_INCREMENT,
+  `OrderDate` datetime NOT NULL,
+  `OrderDeliveryDate` datetime NOT NULL DEFAULT '1970-01-01 00:00:01',
+  `OrderPickupPoint` int NOT NULL DEFAULT '13',
+  `OrderUser` int DEFAULT NULL,
+  `OrderCode` int NOT NULL,
+  `OrderStatus` text NOT NULL,
+  PRIMARY KEY (`OrderID`),
+  KEY `order_ibfk_2_idx` (`OrderUser`),
+  KEY `order_ibfk_1` (`OrderPickupPoint`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`OrderPickupPoint`) REFERENCES `pickuppoint` (`PickupPointID`),
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`OrderUser`) REFERENCES `user` (`UserID`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,'2005-05-20 22:00:00','2011-05-20 22:00:00',13,NULL,301,'Завершен'),(2,'2005-05-20 22:00:00','2011-05-20 22:00:00',12,11,302,'Новый'),(3,'2006-05-20 22:00:00','2012-05-20 22:00:00',13,NULL,303,'Завершен'),(4,'2007-05-20 22:00:00','2013-05-20 22:00:00',14,NULL,304,'Завершен'),(5,'2009-05-20 22:00:00','2015-05-20 22:00:00',15,12,305,'Новый'),(6,'2009-05-20 22:00:00','2015-05-20 22:00:00',16,NULL,306,'Новый'),(7,'2010-05-20 22:00:00','2016-05-20 22:00:00',16,13,307,'Завершен'),(8,'2011-05-20 22:00:00','2017-05-20 22:00:00',18,NULL,308,'Завершен'),(9,'2012-05-20 22:00:00','2018-05-20 22:00:00',20,NULL,309,'Новый'),(10,'2012-05-20 22:00:00','2018-05-20 22:00:00',20,14,310,'Завершен'),(11,'2022-12-20 00:00:00','2022-12-26 00:00:00',7,NULL,431,'1'),(12,'2022-12-24 00:00:00','2022-12-30 00:00:00',13,NULL,644,'1');
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-12-26 22:54:26
